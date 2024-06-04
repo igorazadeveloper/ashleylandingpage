@@ -2257,6 +2257,10 @@ about
     height: 25px;
     font-size: 24px;
   }
+  .mil-quote .mil-name {
+    font-size: 6px;
+    font-style: italic;
+  }
   .mil-about-quote .mil-quote {
     font-size: 16px;
     padding-left: 30px;
