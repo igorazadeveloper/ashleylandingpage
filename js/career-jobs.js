@@ -32,9 +32,9 @@ function displayCareerPosts(posts) {
                     <p id="career-description" class="mil-mb-30">${post.description}</p>
                     <p class="mil"><strong>Location:</strong> ${post.location}</p>
                     <p class="mil"><strong>Type:</strong> ${post.type}</p>
-                    <p class="mil-mb-"><strong>Expiry:</strong> ${new Date(post.expiry).toLocaleDateString()}</p>
+                    <p class="mil-mb-30"><strong>Expiry:</strong> ${new Date(post.expiry).toLocaleDateString()}</p>
                     <div class="mil-up mil-mb-30">
-                        <a href="#" class="mil-link mil-dark mil-arrow-place">
+                        <a href="apply.html?id=${post.id}" class="mil-link mil-dark mil-arrow-place">
                             <span>Apply Now</span>
                         </a>
                     </div>
