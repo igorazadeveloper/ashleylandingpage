@@ -1,65 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetchCareerPosts();
-});
-
-function fetchCareerPosts() {
-    fetch('http://127.0.0.1:8000/api/v1/career/jobs/')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            displayCareerPosts(data);
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
+// Function to fetch jobs from the API
+async function fetchJobs() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/v1/career/jobs/');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching jobs:', error);
+        return [];
+    }
 }
 
-function displayCareerPosts(posts) {
-    const container = document.getElementById('career-posts-container');
-    container.innerHTML = ''; // Clear existing content
-
-    posts.forEach(post => {
-        const postHtml = `
-            <div class="mil-accordion-group mil-up">
-                <div class="mil-accordion-menu">
-                    <p id="career-title" class="mil-accordion-head">${post.title}</p>
-                </div>
-               
-                    <p id="career-description" class="mil-mb-30">${post.description}</p>
-                    <p class="mil"><strong>Location:</strong> ${post.location}</p>
-                    <p class="mil"><strong>Type:</strong> ${post.type}</p>
-                    <p class="mil-mb-30"><strong>Expiry:</strong> ${new Date(post.expiry).toLocaleDateString()}</p>
-                    <div class="mil-up mil-mb-30">
-                        <a href="apply.html?id=${post.id}" class="mil-link mil-dark mil-arrow-place">
-                            <span>Apply Now</span>
-                        </a>
-                    </div>
-                
+// Function to create HTML for a single job
+function createJobHTML(job) {
+    return `
+        <div class="mil-accordion-group mil-up">
+            <div class="mil-accordion-menu">
+                <p id="career-title" class="mil-accordion-head">${job.title}</p>
             </div>
-        `;
-        container.innerHTML += postHtml;
-    });
-
-    // Reinitialize accordion functionality
-    initAccordion();
+            <p id="career-description" class="mil-mb-30">${job.description}</p>
+            <p class="mil"><strong>Location:</strong> ${job.location}</p>
+            <p class="mil"><strong>Type:</strong> ${job.type}</p>
+            <p class="mil-mb-30"><strong>Expiry:</strong> ${job.expiry}</p>
+            <div class="mil-up mil-mb-30">
+                <a href="apply.html?id=${job.id}" class="mil-link mil-dark mil-arrow-place">
+                    <span>Apply Now</span>
+                </a>
+            </div>
+        </div>
+    `;
 }
 
-function initAccordion() {
-    const accordions = document.querySelectorAll('.mil-accordion-menu');
-    accordions.forEach(accordion => {
-        accordion.addEventListener('click', function() {
-            // Toggle active class
-            const isActive = this.parentNode.classList.contains('mil-active');
-            document.querySelectorAll('.mil-accordion-group').forEach(group => {
-                group.classList.remove('mil-active');
-            });
-            if (!isActive) {
-                this.parentNode.classList.add('mil-active');
-            }
-        });
-    });
+// Function to render all jobs
+function renderJobs(jobs) {
+    const jobsContainer = document.getElementById('jobs-container');
+    jobsContainer.innerHTML = jobs.map(createJobHTML).join('');
 }
+
+// Function to initialize the career page
+async function initCareerPage() {
+    const jobs = await fetchJobs();
+    renderJobs(jobs);
+}
+

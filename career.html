@@ -22,6 +22,13 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- page name -->
     <title>IGORAZA</title>
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState == "complete") {
+                aler("ready");
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -252,15 +259,19 @@
                                 </div>
 
                             </div>
-                    
+
                             <!-- ! career data will here -->
                             <div class="col-lg-6">
-                                
-                                <div id="career-posts-container">
-                                    <!-- Career posts will be dynamically inserted here -->
-                                </div>
+
+                                <div id="jobs-container"></div>
+                                <!-- api call for career -->
+                                <script src="js/career-jobs.js"></script>
+                                <script>
+                                    // Call initCareerPage immediately after the script is loaded
+                                    initCareerPage();
+                                </script>
                             </div>
-                            
+
                         </div>
                     </div>
                 </section>
@@ -515,8 +526,7 @@
         <!-- content -->
     </div>
     <!-- wrapper end -->
-    <!-- api call for career -->
-    <script src="js/career-jobs.js"></script>
+
 
     <!-- jQuery js -->
     <script src="js/plugins/jquery.min.js"></script>
