@@ -2771,7 +2771,10 @@ revievs
     height: 70px;
   }
 }
-
+/* ! id ont know why this is here but it need bug */
+.mil-revi-pagination .swiper-pagination-bullet .mil-custom-dot.mil-slide-2 {
+  background-image: url(../img/faces/customers/2.jpg);
+}
 .mil-revi-pagination .swiper-pagination-bullet .mil-custom-dot.mil-slide-2 {
   background-image: url(../img/faces/customers/2.jpg);
 }
