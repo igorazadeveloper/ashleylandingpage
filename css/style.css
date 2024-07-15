@@ -2771,10 +2771,7 @@ revievs
     height: 70px;
   }
 }
-/* ! dont remove the first image idont know if it remove it will become mess */
-.mil-revi-pagination .swiper-pagination-bullet .mil-custom-dot.mil-slide-1 {
-  background-image: url(../img/faces/customers/2.jpg);
-}
+
 .mil-revi-pagination .swiper-pagination-bullet .mil-custom-dot.mil-slide-2 {
   background-image: url(../img/faces/customers/2.jpg);
 }
